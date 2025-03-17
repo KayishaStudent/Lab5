@@ -63,22 +63,27 @@ app.post("/books", (request, response) => {
 });
 
 
+
 app.post("/books/:id/details", (request, response) => {
    const body = request.body;
-      let details = {
+
+   let details = {
+         id: body.id,
          author: body.author,
          genre: body.genre,
          year: body.year
 
    };
-   books;
-   console.log(`Added ${book.id}`)
-   response.status(200).send(books);
+
+
    books.forEach(b => {
       if (b.id === request.params.id) {
-         b.details.author = details.author;
-         b.details.genre = details.genre;
-         b.details.year = details.year;
+         let t = [];
+         t.id = details.id;
+         t.author =  details.author;
+         t.genre = details.genre;
+         t.year = details.year;
+         b.details.push(t);
       }
       response.send(books);
    })
@@ -98,13 +103,13 @@ app.put("/books/:id", (request, response) => {
       
 });
 
-app.delete("/books/:id", (request, response) => {
+app.delete("//books/:id/details/:detailId", (request, response) => {
 
     books.forEach(b => {
       if (b.id === request.params.id) {
          var idx = books.indexOf(b);
          if (idx > -1) {
-            books.splice(idx, 1);
+            books.details.splice(idx, 1);
          }
       }
       response.send(books);
