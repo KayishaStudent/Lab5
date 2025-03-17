@@ -66,27 +66,28 @@ app.post("/books", (request, response) => {
 
 app.post("/books/:id/details", (request, response) => {
    const body = request.body;
-
-   let details = {
-         id: body.id,
-         author: body.author,
-         genre: body.genre,
-         year: body.year
+   let arr = {
+         id: body.details.id,
+         author: body.details.author,
+         genre: body.details.genre,
+         year: body.details.year
 
    };
-
-
+   
+   console.log(arr);
+   
    books.forEach(b => {
       if (b.id === request.params.id) {
-         let t = [];
-         t.id = details.id;
-         t.author =  details.author;
-         t.genre = details.genre;
-         t.year = details.year;
+         let t = [
+            id = arr.id,
+            author = arr.author,
+            genre = arr.genre,
+            year = arr.year];
          b.details.push(t);
       }
-      response.send(books);
+     
    })
+    response.send(books);
 
 })
 
